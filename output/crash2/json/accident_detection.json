@@ -1,0 +1,176 @@
+{
+    "incident_type": "vehicle_collision",
+    "reported_casualties": 4,
+    "incident_time": "02:01",
+    "location": {
+        "latitude": 28.695801,
+        "longitude": 77.204781,
+        "description": "2553"
+    },
+    "additional_information": "",
+    "image_filename": "crash2.png",
+    "submitted_at": "2026-11-20T02:01:55",
+    "image": {
+        "filename": "crash2.png",
+        "width": 1536,
+        "height": 1024
+    },
+    "accident_detection": {
+        "detected": true,
+        "confidence": 0.6951,
+        "threshold": 0.3,
+        "bounding_boxes": [
+            {
+                "box_id": 1,
+                "class_id": 0,
+                "class_name": "Accident",
+                "confidence": 0.6951,
+                "bbox_xyxy": [
+                    1.61,
+                    0.0,
+                    1529.16,
+                    1017.1
+                ]
+            }
+        ]
+    },
+    "person_detection": {
+        "detected": true,
+        "count": 1,
+        "confidence_threshold": 0.2,
+        "image_size": 960,
+        "crop_padding": 0.08,
+        "blur_threshold": 80.0,
+        "people": [
+            {
+                "person_id": 1,
+                "confidence": 0.3724,
+                "bbox_original_xyxy": [
+                    948,
+                    82,
+                    1240,
+                    305
+                ],
+                "crop_region_original_xyxy": [
+                    925,
+                    65,
+                    1263,
+                    322
+                ],
+                "crop_path": "C:\\Users\\aj707\\Downloads\\RESCUE-AI-Severity_Resource_Demand_Agent\\RESCUE-AI-Severity_-_Resource_Demand_Agent\\output\\crash2\\person_crops\\person_001.jpg",
+                "image_quality": {
+                    "sharpness_score": 2390.43,
+                    "is_blurry": false,
+                    "wound_eligible": true
+                }
+            }
+        ]
+    },
+    "wound_detection": {
+        "confidence_threshold": 0.15,
+        "image_size": 640,
+        "confidence_adjustment": {
+            "method": "25_percent_uplift_with_minimum_0.50",
+            "uplift_factor": 1.25,
+            "minimum_score": 0.5,
+            "maximum_score": 1.0,
+            "note": "Display-only transformation; not a calibrated probability or medical severity score."
+        },
+        "people_total": 1,
+        "people_evaluated": 1,
+        "people_skipped": 0,
+        "visually_injured_people": 1,
+        "people_without_detected_wounds": 0,
+        "total_wounds_detected": 1,
+        "overall_injury_score": 0.6578,
+        "score_method": "maximum_adjusted_wound_confidence",
+        "people": [
+            {
+                "person_id": 1,
+                "evaluation_status": "completed",
+                "wound_detected": true,
+                "wound_count": 1,
+                "wounds": [
+                    {
+                        "wound_id": 1,
+                        "class_id": 0,
+                        "class_name": "wound",
+                        "confidence": 0.6578,
+                        "bbox_crop_xyxy": [
+                            84.21,
+                            50.13,
+                            175.76,
+                            171.04
+                        ],
+                        "bbox_original_xyxy": [
+                            1009.21,
+                            115.13,
+                            1100.76,
+                            236.04
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "status": "completed",
+    "generated_at": "2026-11-20T02:01:55.776145+05:30",
+    "severity_and_resource_demand": {
+        "status": "completed",
+        "accident_detected": true,
+        "incident_severity": "LOW",
+        "incident_severity_uncertain": false,
+        "casualty_load": "SMALL",
+        "patient_statistics": {
+            "total_people_detected": 1,
+            "people_evaluated": 1,
+            "total_injured": 1,
+            "non_severe_injured": 1,
+            "severe_wound_patients": 0,
+            "unknown_injury_status": 0
+        },
+        "individual_patient_assessments": [
+            {
+                "person_id": 1,
+                "person_detection_confidence": 0.3724,
+                "wound_evaluation_status": "completed",
+                "wounds_detected": 1,
+                "individual_severity_score": 0.6578,
+                "wound_category": "NON_SEVERE_WOUND",
+                "considered_injured": true,
+                "severe_wound": false
+            }
+        ],
+        "resource_demand": {
+            "ALS_ambulances": 0,
+            "BLS_ambulances": 1,
+            "paramedic_teams": 0,
+            "police_required": true,
+            "fire_department": "NOT_ASSESSED",
+            "paramedic_team_details": {
+                "teams_required": 0,
+                "casualty_load_team_demand": 1,
+                "severe_patient_team_demand": 0,
+                "support_triggered": false,
+                "reasons": [
+                    "Casualty capacity: ceil(1/10) = 1 team(s).",
+                    "No configured on-scene paramedic support trigger."
+                ]
+            }
+        },
+        "severity_reasons": [
+            "1 injured patient(s) and no severe wound patients."
+        ],
+        "resource_reasons": [
+            "ALS: 0 severe patient(s) × 1 = 0.",
+            "BLS: ceil(1/2) = 1 (non-severe patients only).",
+            "Paramedic teams: 0 based on configured capacity/support rules.",
+            "Police required for every detected accident under project policy.",
+            "Fire department omitted: no upstream fire-detection input is available."
+        ],
+        "warnings": [
+            "Prototype limitation: visual wound scores do not assess internal hemorrhage, internal organ injury, pulse, breathing, blood pressure, consciousness, or other vital signs.",
+            "This output is a project prototype, not medically validated triage or real-world dispatch guidance."
+        ]
+    }
+}

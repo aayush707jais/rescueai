@@ -1,0 +1,158 @@
+{
+    "image_filename": "rescanned-final.jpg",
+    "synthetic_location": "E",
+    "accident_detection": {
+        "detected": true
+    },
+    "person_detection": {
+        "detected": true,
+        "count": 1,
+        "people": [
+            {
+                "person_id": 1,
+                "confidence": 0.9
+            }
+        ]
+    },
+    "wound_detection": {
+        "people": [
+            {
+                "person_id": 1,
+                "evaluation_status": "completed",
+                "wound_detected": true,
+                "wounds": [
+                    {
+                        "confidence": 0.9
+                    }
+                ]
+            }
+        ]
+    },
+    "severity_and_resource_demand": {
+        "status": "completed",
+        "accident_detected": true,
+        "incident_severity": "HIGH",
+        "incident_severity_uncertain": false,
+        "casualty_load": "SMALL",
+        "patient_statistics": {
+            "total_people_detected": 1,
+            "people_evaluated": 1,
+            "total_injured": 1,
+            "non_severe_injured": 0,
+            "severe_wound_patients": 1,
+            "unknown_injury_status": 0
+        },
+        "individual_patient_assessments": [
+            {
+                "person_id": 1,
+                "person_detection_confidence": 0.9,
+                "wound_evaluation_status": "completed",
+                "wounds_detected": 1,
+                "individual_severity_score": 0.9,
+                "wound_category": "SEVERE_WOUND",
+                "considered_injured": true,
+                "severe_wound": true
+            }
+        ],
+        "resource_demand": {
+            "ALS_ambulances": 1,
+            "BLS_ambulances": 0,
+            "paramedic_teams": 1,
+            "police_required": true,
+            "fire_department": "NOT_ASSESSED",
+            "paramedic_team_details": {
+                "teams_required": 1,
+                "casualty_load_team_demand": 1,
+                "severe_patient_team_demand": 1,
+                "support_triggered": true,
+                "reasons": [
+                    "Casualty capacity: ceil(1/10) = 1 team(s).",
+                    "Severe-patient capacity: ceil(1/3) = 1 team(s)."
+                ]
+            }
+        },
+        "severity_reasons": [
+            "1 severe wound patient(s) present."
+        ],
+        "resource_reasons": [
+            "ALS: 1 severe patient(s) × 1 = 1.",
+            "BLS: ceil(0/2) = 0 (non-severe patients only).",
+            "Paramedic teams: 1 based on configured capacity/support rules.",
+            "Police required for every detected accident under project policy.",
+            "Fire department omitted: no upstream fire-detection input is available."
+        ],
+        "warnings": [
+            "Prototype limitation: visual wound scores do not assess internal hemorrhage, internal organ injury, pulse, breathing, blood pressure, consciousness, or other vital signs.",
+            "This output is a project prototype, not medically validated triage or real-world dispatch guidance."
+        ]
+    },
+    "resource_routing_recommendations": {
+        "status": "RECOMMENDATIONS_READY",
+        "map_type": "synthetic",
+        "incident_location": "E",
+        "ambulance_capabilities": [
+            "ALS",
+            "oxygen",
+            "monitor"
+        ],
+        "required_resource_counts": {
+            "ALS_ambulances": 1,
+            "BLS_ambulances": 0,
+            "paramedic_teams": 1
+        },
+        "dispatch_authorized": false,
+        "ambulance_candidates": [
+            {
+                "ambulance_id": "AMB-104",
+                "location": "D",
+                "capabilities": [
+                    "ALS",
+                    "oxygen",
+                    "monitor"
+                ],
+                "distance_m": 500,
+                "eta_minutes": 1.17,
+                "route": [
+                    "D",
+                    "E"
+                ]
+            },
+            {
+                "ambulance_id": "AMB-101",
+                "location": "A",
+                "capabilities": [
+                    "ALS",
+                    "oxygen",
+                    "monitor"
+                ],
+                "distance_m": 2200,
+                "eta_minutes": 5.0,
+                "route": [
+                    "A",
+                    "F",
+                    "D",
+                    "E"
+                ]
+            }
+        ],
+        "hospital_candidates": [
+            {
+                "hospital_id": "HOSP-101",
+                "name": "Central Trauma Hospital",
+                "location": "E",
+                "available_beds": 5,
+                "capabilities": [
+                    "EMERGENCY",
+                    "TRAUMA"
+                ],
+                "distance_m": 0,
+                "eta_minutes": 0.0,
+                "route": [
+                    "E"
+                ]
+            }
+        ],
+        "note": "Candidate recommendations only; no real dispatch is performed."
+    },
+    "status": "completed"
+}
