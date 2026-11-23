@@ -312,6 +312,18 @@ class RescueAIPipeline:
                 print(f"[Event] Hospital {hospital_id} marked full")
                 return
 
+    def add_road_blockage(self, node_a: str, node_b: str) -> None:
+        """Block a road segment in the route engine."""
+        self.route_agent.block_road(node_a, node_b)
+        self.resource_agent.route_agent.block_road(node_a, node_b)
+        print(f"[Event] Road blockage added between {node_a} and {node_b}")
+
+    def remove_road_blockage(self, node_a: str, node_b: str) -> None:
+        """Clear a road blockage in the route engine."""
+        self.route_agent.unblock_road(node_a, node_b)
+        self.resource_agent.route_agent.unblock_road(node_a, node_b)
+        print(f"[Event] Road blockage cleared between {node_a} and {node_b}")
+
     # ------------------------------------------------------------------
     # Demo
     # ------------------------------------------------------------------

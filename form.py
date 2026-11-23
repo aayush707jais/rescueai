@@ -369,16 +369,52 @@ def render_form():
 
             image_bytes = image_file.getvalue()
 
-
-
-    # Close the form after successful submission
-
+            # Close the form after successful submission
             st.session_state["report_submitted"] = True
 
+            try:
+                from src.rescue_ai.state_manager import SystemStateManager
+                sm = SystemStateManager()
 
+                # Map GPS to nearest synthetic junction node
+                NODE_COORDS = {
+                    "A": (28.6239, 77.1990),
+                    "B": (28.6189, 77.2090),
+                    "C": (28.6189, 77.2200),
+                    "D": (28.6089, 77.2090),
+                    "E": (28.6089, 77.2200),
+                    "F": (28.6239, 77.1890),
+                }
+                c_lat = float(ss.lat or 28.6089)
+                c_lon = float(ss.lon or 77.2200)
+                closest_node = min(
+                    NODE_COORDS.keys(),
+                    key=lambda n: (NODE_COORDS[n][0] - c_lat)**2 + (NODE_COORDS[n][1] - c_lon)**2
+                )
+
+                cas_count = reported_casualties if reported_casualties is not None else 2
+                severity_estimate = "HIGH" if cas_count >= 3 else ("MEDIUM" if cas_count >= 1 else "LOW")
+
+                sm.report_incident({
+                    "incident_location": closest_node,
+                    "severity": severity_estimate,
+                    "num_casualties": max(1, cas_count),
+                    "num_severe": max(1, cas_count // 2),
+                    "incident_type": incident_data.get("incident_type"),
+                    "additional_information": location_description.strip(),
+                    "reported_by": "Citizen Reporting Form",
+                })
+            except Exception as exc:
+                print(f"[form.py] State manager sync error: {exc}")
 
             return incident_data, image_bytes
 
-
-
     return None, None
+
+
+if __name__ == "__main__":
+    inc_data, img = render_form()
+    if st.session_state.get("report_submitted", False):
+        st.balloons()
+        st.success("🚨 Accident report successfully broadcasted to RESCUE-AI Emergency Network!")
+        st.info("Emergency responders (Ambulances, Hospitals, Police, Fire) have received your dispatch request.")

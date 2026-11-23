@@ -1,15 +1,15 @@
 {
     "incident_type": "vehicle_collision",
     "reported_casualties": 4,
-    "incident_time": "02:01",
+    "incident_time": "19:36",
     "location": {
-        "latitude": 28.695801,
-        "longitude": 77.204781,
+        "latitude": 28.695738,
+        "longitude": 77.204645,
         "description": "2553"
     },
     "additional_information": "",
     "image_filename": "crash2.png",
-    "submitted_at": "2026-11-20T02:01:55",
+    "submitted_at": "2026-11-20T19:36:41",
     "image": {
         "filename": "crash2.png",
         "width": 1536,
@@ -114,7 +114,7 @@
         ]
     },
     "status": "completed",
-    "generated_at": "2026-11-20T02:01:55.776145+05:30",
+    "generated_at": "2026-11-20T19:36:41.294831+05:30",
     "severity_and_resource_demand": {
         "status": "completed",
         "accident_detected": true,

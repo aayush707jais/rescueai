@@ -9,6 +9,25 @@ class RouteAgent:
 
     def __init__(self):
         self.road_map = create_synthetic_map()
+        self.blocked_edges = set()
+
+    def block_road(self, u: str, v: str) -> None:
+        """Mark a road segment as impassable."""
+        edge = tuple(sorted((u, v)))
+        self.blocked_edges.add(edge)
+        if self.road_map.has_edge(u, v):
+            self.road_map[u][v]["travel_time_s"] = 1_000_000
+            self.road_map[u][v]["is_blocked"] = True
+
+    def unblock_road(self, u: str, v: str) -> None:
+        """Clear a road segment to restore normal travel time."""
+        edge = tuple(sorted((u, v)))
+        if edge in self.blocked_edges:
+            self.blocked_edges.remove(edge)
+        default_map = create_synthetic_map()
+        if default_map.has_edge(u, v) and self.road_map.has_edge(u, v):
+            self.road_map[u][v]["travel_time_s"] = default_map[u][v]["travel_time_s"]
+            self.road_map[u][v]["is_blocked"] = False
 
     def calculate_route(self, origin: str, destination: str) -> dict:
         """

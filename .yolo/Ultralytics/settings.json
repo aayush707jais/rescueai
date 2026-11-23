@@ -1,0 +1,19 @@
+{
+  "settings_version": "0.0.8",
+  "datasets_dir": "C:\\Users\\aj707\\Downloads\\RESCUE-AI-Severity_Resource_Demand_Agent\\datasets",
+  "weights_dir": "C:\\Users\\aj707\\Downloads\\RESCUE-AI-Severity_Resource_Demand_Agent\\RESCUE-AI-Severity_-_Resource_Demand_Agent\\weights",
+  "runs_dir": "C:\\Users\\aj707\\Downloads\\RESCUE-AI-Severity_Resource_Demand_Agent\\RESCUE-AI-Severity_-_Resource_Demand_Agent\\runs",
+  "uuid": "b8534421db0a7ea8672353c267f51dea5d7290c3f4b76c3afa96454ec0ca12d7",
+  "sync": true,
+  "api_key": "",
+  "openai_api_key": "",
+  "clearml": true,
+  "comet": true,
+  "dvc": true,
+  "mlflow": true,
+  "raytune": true,
+  "tensorboard": false,
+  "wandb": false,
+  "vscode_msg": true,
+  "openvino_msg": true
+}

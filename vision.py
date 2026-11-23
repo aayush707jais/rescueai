@@ -20,9 +20,12 @@ Install:
 """
 
 import json
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
+
+os.environ.setdefault("YOLO_CONFIG_DIR", str(Path(__file__).resolve().parent / ".yolo"))
 
 import cv2
 import torch
